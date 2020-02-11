@@ -14,7 +14,7 @@ import javax.servlet.http.Part;
 
 public class FileSaver {
 	//Uppercase - CTRL + SHIFT + X
-	public final static String SERVER_PATH = "/casadocodigo/";
+	public final static String SERVER_PATH = "C:\\casadocodigo\\";
 
 	public String write(Part file, String path) {
 		String relativePath = path + "/" + file.getSubmittedFileName();
@@ -29,10 +29,10 @@ public class FileSaver {
 	
 	public static void transfer(Path source, OutputStream outputStream) {
 		try {
-			FileInputStream input = new FileInputStream(source.toFile());
+			FileInputStream inputStream = new FileInputStream(source.toFile());
 			
-			try (ReadableByteChannel inputChannel = Channels.newChannel(input); 
-					WritableByteChannel outputChannel = Channels.newChannel(outputStream);) {
+			try (ReadableByteChannel inputChannel = Channels.newChannel(inputStream); 
+					WritableByteChannel outputChannel = Channels.newChannel(outputStream)) {
 				
 				ByteBuffer buffer = ByteBuffer.allocate(1024 * 10);
 				
