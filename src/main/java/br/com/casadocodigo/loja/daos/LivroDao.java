@@ -27,14 +27,14 @@ public class LivroDao {
 	}
 
 	public List<Livro> ultimosLancamentos() {
-		String jpql = "SELECT l FROM Livro l order by l.dataPublicacao desc";
+		String jpql = "SELECT l FROM Livro l ORDER BY l.dataPublicacao DESC";
 		return manager.createQuery(jpql, Livro.class)
 				.setMaxResults(5)
 				.getResultList();
 	}
 	
 	public List<Livro> demaisLivros() {
-		String jpql = "SELECT l FROM Livro l order by l.dataPublicacao desc";
+		String jpql = "SELECT l FROM Livro l ORDER BY l.dataPublicacao DESC";
 		return manager.createQuery(jpql, Livro.class)
 				.setFirstResult(5)
 				.getResultList();
