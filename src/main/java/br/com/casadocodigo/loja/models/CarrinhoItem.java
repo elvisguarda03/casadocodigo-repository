@@ -1,6 +1,10 @@
 package br.com.casadocodigo.loja.models;
 
-public class CarrinhoItem {
+import java.io.Serializable;
+
+public class CarrinhoItem implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private Livro livro;
 	private Integer quantidade;
 

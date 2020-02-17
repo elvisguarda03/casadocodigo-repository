@@ -42,7 +42,6 @@ public class AdminLivrosBean {
 		externalContext.getFlash().setKeepMessages(true);
 		context.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!"));
 
-		System.out.println("Livro salvo: " + livro);
 		clear();
 
 		try {

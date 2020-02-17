@@ -1,5 +1,6 @@
 package br.com.casadocodigo.loja.daos;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.Stateful;
@@ -7,10 +8,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
+import org.hibernate.annotations.QueryHints;
+
 import br.com.casadocodigo.loja.models.Livro;
 
 @Stateful
-public class LivroDao {
+public class LivroDao implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@PersistenceContext(type = PersistenceContextType.EXTENDED)
 	private EntityManager manager;
 	
@@ -30,6 +35,7 @@ public class LivroDao {
 		String jpql = "SELECT l FROM Livro l ORDER BY l.dataPublicacao DESC";
 		return manager.createQuery(jpql, Livro.class)
 				.setMaxResults(5)
+				.setHint(QueryHints.CACHEABLE, true)
 				.getResultList();
 	}
 	
@@ -37,6 +43,7 @@ public class LivroDao {
 		String jpql = "SELECT l FROM Livro l ORDER BY l.dataPublicacao DESC";
 		return manager.createQuery(jpql, Livro.class)
 				.setFirstResult(5)
+				.setHint(QueryHints.CACHEABLE, true)
 				.getResultList();
 	}
 

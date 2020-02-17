@@ -1,5 +1,8 @@
 package br.com.casadocodigo.loja.beans;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
@@ -21,5 +24,21 @@ public class CarrinhoComprasBean {
 		carrinho.add(new CarrinhoItem(livro));
 		
 		return "carrinho?faces-redirect=true";
+	}
+	
+	public List<CarrinhoItem> getItens() {
+		return carrinho.getItens();
+	}
+	
+	public BigDecimal getTotal() {
+		return carrinho.getTotal();
+	}
+	
+	public BigDecimal getTotal(CarrinhoItem carrinhoItem) {
+		return carrinho.getTotal(carrinhoItem);
+	}
+	
+	public void remover(CarrinhoItem carrinhoItem) {
+		this.carrinho.remove(carrinhoItem);
 	}
 }
