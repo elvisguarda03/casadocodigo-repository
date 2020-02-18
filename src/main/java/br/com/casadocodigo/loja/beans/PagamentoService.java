@@ -30,6 +30,9 @@ public class PagamentoService {
 
 	@Inject
 	private CompraDao compraDao;
+	
+	@Inject
+	private MailSender mailSender;
 
 	private static ExecutorService executor = Executors.newFixedThreadPool(50);
 
@@ -50,7 +53,12 @@ public class PagamentoService {
 	
 				Response response = Response.seeOther(uriLocation)
 						.build();
-			
+				
+				String messageBody = "Sua compra foi realizada com sucesso, com o número de pedido " + compra.getUuid();
+				
+				mailSender.send("compras@casadocodigo.com.br", compra.getUsuario().getEmail(), 
+						"Nova Compra na CDC", messageBody);
+				
 				ar.resume(response);
 			} catch (Exception e) {
 				ar.resume(new WebApplicationException(e));
